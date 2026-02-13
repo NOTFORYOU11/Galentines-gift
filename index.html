@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Cutie Pies</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #ffe3ed, #ffd6e8, #ffc2dc, #ffe6f2);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    font-family: 'Dancing Script', cursive;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(255,105,180,0.4);
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #ff4d94;
+}
+
+p {
+    font-size: 1.3rem;
+    color: #d63384;
+    line-height: 1.6;
+}
+
+.btn {
+    background-color: #ff4d94;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #ff85b2;
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 25px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 5px solid #ffb6c1;
+    box-shadow: 0 10px 25px rgba(255,105,180,0.4);
+}
+
+.active {
+    opacity: 1;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: #ff4d94;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh); opacity:1;}
+    100% {transform: translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+for (let i = 0; i < 20; i++) {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*3 + 4) + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<div id="page1" class="card">
+    <h1>Happy Galentine's to my cutie pies!</h1>
+    <button class="btn" onclick="nextPage()">Click for a surprise 💌</button>
+</div>
+
+<div id="page2" class="card hidden">
+    <p>
+        Happy Galentine's to my girls that have made my two years worth living. 
+        Without you guys, my 9th and 10th were incomplete. You have given me the 
+        prettiest memories and the funniest ones. 
+        <br><br>
+        Even though how much we fight, at the end, you always stand by me and 
+        always support my every decision. You were always there when I was at 
+        the lowest point of my life. 
+        <br><br>
+        You have seen me through everything—through happiness, through tears—and 
+        yet you always chose me. That is why happy Galentine's to my both girls 
+        because without you, my life is not complete. You are truly the reason 
+        I smiled when I lost someone precious.
+    </p>
+
+    <div class="slideshow">
+        <div class="slide active"><img src="IMG_0021.jpeg"></div>
+        <div class="slide"><img src="IMG_0017.jpeg"></div>
+        <div class="slide"><img src="F653BF48-1680-4918-88A7-7F21DB035481.jpeg"></div>
+        <div class="slide"><img src="55B383BC-0072-4043-BF5A-94E02F6BC68C.jpeg"></div>
+        <div class="slide"><img src="IMG_0859.png"></div>
+        <div class="slide"><img src="IMG_0860.jpeg"></div>
+    </div>
+
+    <div style="margin-top:20px;font-size:20px;color:#ff4d94;">
+        🌸 Forever & Always 🌸
+    </div>
+</div>
+
+<script>
+function nextPage() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+}
+
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+</script>
+
+</body>
+</html>
